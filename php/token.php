@@ -21,10 +21,11 @@ class token {
 	$this->acc = $acc;
 
 	$ssn_db = new ssn_db();
-	$link = $ssn_db->connect_db();
+//	$ssn_db->connect_db();
+	
 	$ssn_acc_key = $ssn_db->get_key($acc);
         $this->key = $ssn_acc_key;
-//printf("\r\nIV:%s", $this->iv);
+//printf("\r\nIV:%s, key:%s", $this->iv, $this->key);
 
 	$aes = new AES($token_enc, $ssn_acc_key, 128);
 //	$aes->setMode(AES::M_ECB);

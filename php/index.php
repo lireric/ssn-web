@@ -3,6 +3,10 @@ include 'AES.php';
 include 'ssn_db.php';
 include 'token.php';
 
+error_reporting(E_ALL ^ E_NOTICE);
+define('WP_DEBUG', false);
+define('WP_DEBUG_LOG', false);
+
 $sIV = "ssn2014\0\0\0\0\0\0\0\0\0";
 //$sIV = "ssn";
 $http_headers = getallheaders();
@@ -107,9 +111,10 @@ printf("\r\nJSON: %s", $jsonString);
 // Выполняем SQL-запрос
 //$query = 'SELECT * FROM test';
 //		for ($index=0; $index<=$device->n; $index++) {
-			$query = sprintf ('INSERT INTO ssn_teledata (`account`, `object`, `sensor`, `index`, `time_send`, `sensor_value`) VALUES (%d,%d,%d,%d,%d,%d)', $ssn_acc, $ssn_obj, $device->dev, $device->i, $device->updtime, $device->val);
-			$result = mysql_query($query) or die('Error: ' . mysql_error());
-
+			if ($device) {
+				$query = sprintf ('INSERT INTO ssn_teledata (`account`, `object`, `sensor`, `index`, `time_send`, `sensor_value`) VALUES (%d,%d,%d,%d,%d,%d)', $ssn_acc, $ssn_obj, $device->dev, $device->i, $device->updtime, $device->val);
+				$result = mysql_query($query) or die('Error: ' . mysql_error());
+			}
 			$count++;
 //		}
 //printf("%s", $result);

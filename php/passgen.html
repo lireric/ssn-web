@@ -1,0 +1,87 @@
+﻿<style> 
+.jsPassGenWrapper { 
+    width:300px; 
+    height:180px; 
+    padding:10px; 
+    border:1px solid #aaa; 
+} 
+.jsPassGenWrapper #jsPassGenForm { 
+    float:left; 
+    width:50%; 
+    font-size:16px; 
+    font-family:Courier, serif; 
+} 
+.jsPassGenWrapper .jsPassGenCtrls { 
+    float:right; 
+    width:50%; 
+    margin-top:100px; 
+} 
+.jsPassGenWrapper input { 
+    padding:0px 10px; 
+} 
+</style> 
+<div class="jsPassGenWrapper"> 
+    <div id="jsPassGenForm"></div> 
+    <div class="jsPassGenCtrls"> 
+        <input type="checkbox" id="jsPassGenUseNumsCB" checked="checked" /> 
+        <label for="jsPassGenUseNumsCB">Use numbers</label><br /> 
+        <input type="button" value="Create password" onClick="runPassGen()" /> 
+    </div> 
+<script type="text/javascript"> 
+/* @param id - идентификатор блока для вставки паролей)
+@param syllableNum - количество слогов в пароле
+@param numPass - количество количество паролей вставляемых в блок
+@param useNums - использовать числа или нет */ 
+function jsPassGen(id, syllableNum, numPass, useNums) { 
+    id = typeof(id) != 'undefined' ? id : 'jsPassGenForm';    // параметры по умолчанию
+    syllableNum = typeof(syllableNum) != 'undefined' ? syllableNum : 3;
+    numPass = typeof(numPass) != 'undefined' ? numPass : 10; 
+    useNums = typeof(useNums) != 'undefined' ? useNums : true;
+
+    function rand(from, to) { 
+        from = typeof(from) != 'undefined' ? from : 0;    // параметры
+        to = typeof(to) != 'undefined' ? to : from + 1;    // по умолчанию
+        return Math.round(from + Math.random()*(to - from)); 
+    }; 
+
+    function getRandChar(a) { 
+        return a.charAt(rand(0,a.length-1)); 
+    } 
+
+    var form = document.getElementById(id); 
+    // Наиболее подходящие согласные для использования их в качестве заглавных
+    var cCommon = "bcdfghklmnprstvz"; 
+    var cAll = cCommon + "jqwx";    // Все согласные 
+    var vAll = "aeiouy";    // Все гласные 
+    var lAll = cAll + vAll;    // Все буквы
+
+    form.innerHTML = ""; 
+    for(var j = 0; j < numPass; ++j) { 
+        // Коэффициент определяющий вероятность появления числа между слогами
+        var numProb = 0, numProbStep = 0.25;
+        for(var i = 0; i < syllableNum; ++i) { 
+            if(Math.round(Math.random())) { 
+                form.innerHTML += getRandChar(cCommon).toUpperCase() + 
+                                    getRandChar(vAll) + 
+                                    getRandChar(lAll); 
+            } else { 
+                form.innerHTML += getRandChar(vAll).toUpperCase() +  
+                                    getRandChar(cCommon); 
+            } 
+            if(useNums && Math.round(Math.random() + numProb)) { 
+                form.innerHTML += rand(0,9); 
+                numProb += numProbStep; 
+            } 
+        } 
+        form.innerHTML += "<br />"; 
+    } 
+    return false; 
+} 
+
+function runPassGen() { 
+    jsPassGen('jsPassGenForm', 3, 10, jsPassGenUseNumsCB.checked);
+} 
+
+runPassGen(); 
+</script> 
+</div>
