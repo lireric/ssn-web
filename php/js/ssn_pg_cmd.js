@@ -10,7 +10,7 @@ function ssn_send_command(elm) {
 	var ws_result;
 	var resStr;
 	
-	var jqxhr_dict_devs = $.getJSON( "http://192.168.1.114/ssn/data.php", 
+	var jqxhr_dict_devs = $.getJSON( ws_server+"/data.php", 
 			{
 			u:  	ssn_user,
 			p:  	ssn_pswd,
@@ -153,7 +153,7 @@ $(document).ready(function () {
 // get information about all devices for selected account and refresh data in browser:
 function ssn_update_devices() {
 
-var jqxhr_dict_devs = $.getJSON( "http://192.168.1.114/ssn/dict.php", 
+var jqxhr_dict_devs = $.getJSON( ws_server+"/dict.php", 
 {
 a:  1,
 dev: 0
@@ -218,7 +218,7 @@ console.log( "error getting dict devs data" );
 
 // ----------------------------------
 // get static information about all devices types:
-var jqxhr_dict_devs = $.getJSON( "http://192.168.1.114/ssn/dict.php", 
+var jqxhr_dict_devs = $.getJSON( ws_server+"/dict.php", 
 {
 dtype: 0
 })

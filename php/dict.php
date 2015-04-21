@@ -193,7 +193,7 @@ if ($dev_str != '') {
 	    `ssn_dict`.`dict_value_string`,
 	    `ssn_dict`.`dict_value_float`,
 	    `ssn_dict`.`dict_item_comment`
-	FROM `ssn`.`ssn_dict` WHERE  `ssn_dict`.`dict_is_active` = '1' AND `ssn_dict`.`dict_is_common` >= '%d' AND `ssn_dict`.`dict_parent` = %d", $access_data_level, $p);
+	FROM `ssn_dict` WHERE  `ssn_dict`.`dict_is_active` = '1' AND `ssn_dict`.`dict_is_common` >= '%d' AND `ssn_dict`.`dict_parent` = %d", $access_data_level, $p);
 } else if ($rt > 0) {
 // ---------------------------------------------------: rt & st || rt
 	if ($st > 0) {
@@ -217,7 +217,7 @@ if ($dev_str != '') {
 	    d4.`dict_value_string`,
 	    d4.`dict_value_float`,
 	    d4.`dict_item_comment`
-	FROM `ssn`.`ssn_dict` AS d1 INNER JOIN `ssn`.`ssn_dict` AS d2 ON d1.id_dict = d2.dict_parent INNER JOIN `ssn`.`ssn_dict` AS d3 ON d2.id_dict = d3.dict_parent INNER JOIN `ssn`.`ssn_dict` AS d4 ON d3.id_dict = d4.dict_parent 
+	FROM `ssn_dict` AS d1 INNER JOIN `ssn_dict` AS d2 ON d1.id_dict = d2.dict_parent INNER JOIN `ssn_dict` AS d3 ON d2.id_dict = d3.dict_parent INNER JOIN `ssn_dict` AS d4 ON d3.id_dict = d4.dict_parent 
 	WHERE d2.`dict_is_active` = '1' AND d2.`dict_is_common` >= '%d' AND d1.`dict_parent` IS NULL AND d1.`dict_value_int` = %d AND d2.`dict_value_int` = %d AND d3.`dict_value_int` = %d", $access_data_level, $rt, $ssn_acc, $st);
 	} else {
 // ---------------------------------------------------: rt
@@ -235,7 +235,7 @@ if ($dev_str != '') {
 	    d2.`dict_value_string`,
 	    d2.`dict_value_float`,
 	    d2.`dict_item_comment`
-	FROM `ssn`.`ssn_dict` AS d1 INNER JOIN `ssn`.`ssn_dict` AS d2 ON d1.id_dict = d2.dict_parent
+	FROM `ssn_dict` AS d1 INNER JOIN `ssn_dict` AS d2 ON d1.id_dict = d2.dict_parent
 	WHERE d2.`dict_is_active` = '1' AND d2.`dict_is_common` >= '%d' AND d1.`dict_parent` IS NULL AND d1.`dict_value_int` = %d", $access_data_level, $rt);
 	}
 }

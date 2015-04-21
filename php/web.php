@@ -1,6 +1,5 @@
 <?php
 error_reporting(E_ALL ^ E_NOTICE);
-//require_once 'ssn_conf.php';
 require_once 'ssn_conf.php';
 $ssn_lang = $_COOKIE["ssn-lang"];
 $ssn_pswd = $_COOKIE["ssn-p"];
@@ -8,6 +7,17 @@ $ssn_user = $_COOKIE["ssn-u"];
 $ssn_user_name = $_COOKIE["ssn-uname"];
 $ssn_acc = $_COOKIE["ssn-acc"];
 $pg = stripslashes ( $_GET["pg"] );
+
+if ($site_lang == "") { 
+ $l_arr = explode(',',$_SERVER['HTTP_ACCEPT_LANGUAGE']);
+ if ($l_arr[0] == "ru-RU") {
+ 	$site_lang = "ru";
+ } else {
+ 	$site_lang = "en";
+ }
+ 	setCookie("site-lang", $ssn_lang, 360);
+}
+
 ?>
 
 <!DOCTYPE html>
@@ -19,13 +29,13 @@ $pg = stripslashes ( $_GET["pg"] );
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="SSN control center" />
 
-<link href="css/jquery.dataTables.css" rel="stylesheet" type="text/css"/>
+<link href="css/jquery.dataTables.min.css" rel="stylesheet" type="text/css"/>
 <link href="css/jquery.dataTables.yadcf.css" rel="stylesheet" type="text/css" />
 <link href="css/chosen.css" rel="stylesheet" />
 <link href="css/bootstrap.min.css" rel="stylesheet" />
 <link href="css/bootstrap-theme.min.css" rel="stylesheet" />
-<!--<link href="css/jquery-ui.min.css" rel="stylesheet" type="text/css" />-->
-<link href="css/jquery-ui.css" rel="stylesheet" type="text/css" />
+<link href="css/jquery-ui.min.css" rel="stylesheet" type="text/css" />
+<!--<link href="css/jquery-ui.css" rel="stylesheet" type="text/css" />-->
 <link href="css/jquery-ui.theme.min.css" rel="stylesheet" type="text/css" />
 <link href="css/jquery-ui.structure.min.css" rel="stylesheet" type="text/css" />
 <link href="css/jquery.datetimepicker.css" rel="stylesheet" type="text/css" />
@@ -37,8 +47,8 @@ $pg = stripslashes ( $_GET["pg"] );
 <link href="css/dataTables.jqueryui.css" rel="stylesheet"/>
 
 <script src="js/jquery-2.1.3.min.js" type="text/javascript"></script>
-<!--<script src="js/jquery.dataTables.min.js" type="text/javascript" charset="utf8"></script>-->
-<script src="js/jquery.dataTables.js" type="text/javascript" charset="utf8"></script>
+<script src="js/jquery.dataTables.min.js" type="text/javascript" charset="utf8"></script>
+<!--<script src="js/jquery.dataTables.js" type="text/javascript" charset="utf8"></script>-->
 <script src="js/jquery.dataTables.yadcf-ssn.js"></script>
 <script src="js/chosen.jquery.min.js" type="text/javascript"></script>
 <script src="js/moment-with-locales.min.js" type="text/javascript"></script>
@@ -73,6 +83,7 @@ var ssn_lang = getCookie("ssn-lang");
 var ssn_pswd = getCookie("ssn-p");
 var ssn_acc = getCookie("ssn-acc");
 var ssn_user = getCookie("ssn-u");
+var ws_server = "<?php echo SSN_PREFS::ssn_get_app_pref ('ws_server' ); ?>";
 </script>
  
     <!-- Fixed navbar -->
@@ -393,7 +404,7 @@ var pswd;
 function ssn_login() {
 	pswd = CryptoJS.SHA256($("#inputPassword")[0].value).toString(CryptoJS.enc.Hex);
 
-var jqxhr_user_data = $.getJSON( "http://192.168.1.114/ssn/auth.php", 
+var jqxhr_user_data = $.getJSON( ws_server+"/auth.php", 
 {
 u: $("#inputLogin")[0].value,
 p: pswd,
@@ -416,7 +427,7 @@ r: $("#remember-me")[0].checked
 		setCookie("ssn-p", pswd, exdays);
 		setCookie("ssn-acc", user_info.acc_id, exdays);
 
-		$("#msg_container")[0].innerHTML = '<div class="alert alert-success" role="alert"><br/><strong>Hellow '+user_info.user_name+'!</strong> Welcome to SSN. </div>';
+		$("#msg_container")[0].innerHTML = '<div class="alert alert-success" role="alert"><br/><strong>Hello '+user_info.user_name+'!</strong> Welcome to SSN. </div>';
 		
 		window.location.assign(window.location.origin+window.location.pathname+"?");
 	}

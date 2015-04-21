@@ -1,0 +1,4 @@
+DirectoryIndex web.php
+ErrorDocument 404 /?page=notfound
+ErrorDocument 500 /?page=notfound
+

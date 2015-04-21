@@ -44,18 +44,16 @@ $columns = array(
     array(
         'db'        => 'time_send',
         'dt'        => 5,
-        'formatter' => function( $d, $row ) {
+        'formatter' => create_function ( '$d, $row', '
             return $d;
-//            return date( 'Y-m-d H:i:s', $d);
-        }
+        ')
     ),
     array(
         'db'        => 'time_store',
         'dt'        => 6,
-        'formatter' => function( $d, $row ) {
-            return date( 'U', strtotime($d));
-//            return date( 'Y-m-d H:i:s', strtotime($d));
-        }
+        'formatter' => create_function ( '$d, $row', '
+            return date( "U", strtotime($d));
+        ')
     )
 );
  
@@ -87,13 +85,13 @@ require( 'ssp.class.php' );
         );
        
 $ch = curl_init();
-curl_setopt($ch, CURLOPT_URL, "http://192.168.1.114/ssn/dict.php?rt=3&st=2"); // to do: get it from prefs
+curl_setopt($ch, CURLOPT_URL, SSN_PREFS::ssn_get_app_pref ('ws_server' )."/dict.php?rt=3&st=2"); // to do: get it from prefs
 curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
 curl_setopt($ch, CURLOPT_HEADER, false);
 curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
 
 $dict_data_devs = curl_exec($ch);
-curl_setopt($ch, CURLOPT_URL, "http://192.168.1.114/ssn/dict.php?rt=3&st=1"); // to do: get it from prefs
+curl_setopt($ch, CURLOPT_URL, SSN_PREFS::ssn_get_app_pref ('ws_server' )."/dict.php?rt=3&st=1"); // to do: get it from prefs
 $dict_data_objs = curl_exec($ch);
 
 curl_close($ch);

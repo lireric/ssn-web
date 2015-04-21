@@ -27,7 +27,7 @@ $(document).ready(function () {
 $("#data_time_store_from")[0].value = moment(dateFrom, "X").format("YYYY-MM-DD HH:mm");
 $("#data_time_store_to")[0].value = moment(dateTo, "X").format("YYYY-MM-DD HH:mm");
 
-var jqxhr_dict_devs = $.getJSON( "http://192.168.1.114/ssn/dict.php", 
+var jqxhr_dict_devs = $.getJSON(ws_server+"/dict.php", 
 {
 a:  1,
 rt: 3,
@@ -74,7 +74,7 @@ function ssn_update_datetime() {
 
 function ssn_refresh_data() {
 
-var jqxhr = $.getJSON( "http://192.168.1.114/ssn/wsgraph.php", 
+var jqxhr = $.getJSON( ws_server+"/wsgraph.php", 
 {
 a: 1,
 gb: dateFrom,

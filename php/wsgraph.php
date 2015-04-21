@@ -48,8 +48,8 @@ $headers = array(
   "ssn-acc: 1"
 );
 $ch = curl_init();
-//curl_setopt($ch, CURLOPT_URL, "http://192.168.1.114/ssn/dict.php?rt=3&st=2"); // to do: get it from prefs
-curl_setopt($ch, CURLOPT_URL, "http://192.168.1.114/ssn/dict.php?dev=0"); // to do: get it from prefs
+//curl_setopt($ch, CURLOPT_URL, "http://localhost/ssn/dict.php?rt=3&st=2"); // to do: get it from prefs
+curl_setopt($ch, CURLOPT_URL, SSN_PREFS::ssn_get_app_pref ('ws_server' )."/dict.php?dev=0"); // to do: get it from prefs
 curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
 curl_setopt($ch, CURLOPT_HEADER, false);
 curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
@@ -59,7 +59,7 @@ $dict_data_devs = json_decode(curl_exec($ch));
 
 if (($gb > 0) && ($ge > 0)) {	
 	$sql = sprintf ("SELECT `ssn_teledata`.`time_store`, `ssn_teledata`.`sensor_value`, `ssn_teledata`.`sensor`
-	FROM `ssn`.`ssn_teledata` WHERE  UNIX_TIMESTAMP(`ssn_teledata`.`time_store`) BETWEEN '%d' AND %d  %s", $gb, $ge, $dev_where);
+	FROM `ssn_teledata` WHERE  UNIX_TIMESTAMP(`ssn_teledata`.`time_store`) BETWEEN '%d' AND %d  %s", $gb, $ge, $dev_where);
 }
 
 //printf("\r\nSQL: %s", $sql);

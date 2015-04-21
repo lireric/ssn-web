@@ -11,7 +11,8 @@ $(document).ready(function () {
 	    "deferRender": true,
 	    "dataType": "jsonp",
             "ajax": {
-                "url": "http://192.168.1.114/ssn/ssn.php",
+//                "url": "http://localhost/ssn/ssn.php",
+                "url": ws_server+"/ssn.php",
                 "type": "GET"
             },
             "language": {
