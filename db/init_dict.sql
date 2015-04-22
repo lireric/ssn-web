@@ -157,14 +157,14 @@ INSERT INTO ssn_dict
 `dict_item_comment`,`dict_value_string`,`dict_value_float`,`dict_is_common`,`dict_is_active`)
 VALUES
 (202,9,1,2,NULL,NULL,
-'set state','set state',NULL,1,1);
+'get status','get status',NULL,1,1);
 
 INSERT INTO ssn_dict
 (`id_dict`,`dict_parent`,`dict_item_type`,`dict_value_int`,`dict_value_int2`,`dict_value_int3`,
 `dict_item_comment`,`dict_value_string`,`dict_value_float`,`dict_is_common`,`dict_is_active`)
 VALUES
 (203,9,1,3,NULL,NULL,
-'get status','get status',NULL,1,1);
+'set status','set status',NULL,1,1);
 
 INSERT INTO ssn_dict
 (`id_dict`,`dict_parent`,`dict_item_type`,`dict_value_int`,`dict_value_int2`,`dict_value_int3`,
@@ -290,14 +290,14 @@ INSERT INTO ssn_dict
 `dict_item_comment`,`dict_value_string`,`dict_value_float`,`dict_is_common`,`dict_is_active`)
 VALUES
 (501,101,1,2,NULL,9,
-'set ds18b20 state','set state',NULL,1,1);
+'get ds18b20 state','get state',NULL,1,1);
 
 INSERT INTO ssn_dict
 (`id_dict`,`dict_parent`,`dict_item_type`,`dict_value_int`,`dict_value_int2`,`dict_value_int3`,
 `dict_item_comment`,`dict_value_string`,`dict_value_float`,`dict_is_common`,`dict_is_active`)
 VALUES
 (502,101,1,3,NULL,9,
-'get ds18b20 status','get status',NULL,1,1);
+'set ds18b20 status','set status',NULL,1,1);
 
 INSERT INTO ssn_dict
 (`id_dict`,`dict_parent`,`dict_item_type`,`dict_value_int`,`dict_value_int2`,`dict_value_int3`,
@@ -327,14 +327,14 @@ INSERT INTO ssn_dict
 `dict_item_comment`,`dict_value_string`,`dict_value_float`,`dict_is_common`,`dict_is_active`)
 VALUES
 (511,102,1,2,NULL,9,
-'set dht22 state','set state',NULL,1,1);
+'get dht22 status','set status',NULL,1,1);
 
 INSERT INTO ssn_dict
 (`id_dict`,`dict_parent`,`dict_item_type`,`dict_value_int`,`dict_value_int2`,`dict_value_int3`,
 `dict_item_comment`,`dict_value_string`,`dict_value_float`,`dict_is_common`,`dict_is_active`)
 VALUES
 (512,102,1,3,NULL,9,
-'get dht22 status','get status',NULL,1,1);
+'set dht22 status','set status',NULL,1,1);
 
 INSERT INTO ssn_dict
 (`id_dict`,`dict_parent`,`dict_item_type`,`dict_value_int`,`dict_value_int2`,`dict_value_int3`,
@@ -379,14 +379,14 @@ INSERT INTO ssn_dict
 `dict_item_comment`,`dict_value_string`,`dict_value_float`,`dict_is_common`,`dict_is_active`)
 VALUES
 (521,104,1,2,NULL,9,
-'set i/o PP state','set state',NULL,1,1);
+'get i/o PP status','get status',NULL,1,1);
 
 INSERT INTO ssn_dict
 (`id_dict`,`dict_parent`,`dict_item_type`,`dict_value_int`,`dict_value_int2`,`dict_value_int3`,
 `dict_item_comment`,`dict_value_string`,`dict_value_float`,`dict_is_common`,`dict_is_active`)
 VALUES
 (522,104,1,3,NULL,9,
-'get i/o PP status','get status',NULL,1,1);
+'set i/o PP status','set status',NULL,1,1);
 
 INSERT INTO ssn_dict
 (`id_dict`,`dict_parent`,`dict_item_type`,`dict_value_int`,`dict_value_int2`,`dict_value_int3`,
@@ -407,7 +407,7 @@ INSERT INTO ssn_dict
 (`id_dict`,`dict_parent`,`dict_item_type`,`dict_value_int`,`dict_value_int2`,`dict_value_int3`,
 `dict_item_comment`,`dict_value_string`,`dict_value_float`,`dict_is_common`,`dict_is_active`)
 VALUES
-(525,104,1,4,0,9,
+(525,104,1,5,0,9,
 'write i/o PP property','write property',NULL,1,1);
 -- value types for read/write properties:
 -- dict_value_int = value type, dict_value_float = scale
@@ -431,14 +431,14 @@ INSERT INTO ssn_dict
 `dict_item_comment`,`dict_value_string`,`dict_value_float`,`dict_is_common`,`dict_is_active`)
 VALUES
 (531,105,1,2,NULL,9,
-'set i/o OD state','set state',NULL,1,1);
+'get i/o OD status','get status',NULL,1,1);
 
 INSERT INTO ssn_dict
 (`id_dict`,`dict_parent`,`dict_item_type`,`dict_value_int`,`dict_value_int2`,`dict_value_int3`,
 `dict_item_comment`,`dict_value_string`,`dict_value_float`,`dict_is_common`,`dict_is_active`)
 VALUES
 (532,105,1,3,NULL,9,
-'get i/o OD status','get status',NULL,1,1);
+'set i/o OD status','set status',NULL,1,1);
 
 INSERT INTO ssn_dict
 (`id_dict`,`dict_parent`,`dict_item_type`,`dict_value_int`,`dict_value_int2`,`dict_value_int3`,
@@ -459,7 +459,7 @@ INSERT INTO ssn_dict
 (`id_dict`,`dict_parent`,`dict_item_type`,`dict_value_int`,`dict_value_int2`,`dict_value_int3`,
 `dict_item_comment`,`dict_value_string`,`dict_value_float`,`dict_is_common`,`dict_is_active`)
 VALUES
-(535,105,1,4,0,9,
+(535,105,1,5,0,9,
 'write i/o OD property','write property',NULL,1,1);
 -- value types for read/write properties:
 -- dict_value_int = value type, dict_value_float = scale
@@ -483,14 +483,14 @@ INSERT INTO ssn_dict
 `dict_item_comment`,`dict_value_string`,`dict_value_float`,`dict_is_common`,`dict_is_active`)
 VALUES
 (541,106,1,2,NULL,9,
-'set i/o IN state','set state',NULL,1,1);
+'get i/o IN status','get status',NULL,1,1);
 
 INSERT INTO ssn_dict
 (`id_dict`,`dict_parent`,`dict_item_type`,`dict_value_int`,`dict_value_int2`,`dict_value_int3`,
 `dict_item_comment`,`dict_value_string`,`dict_value_float`,`dict_is_common`,`dict_is_active`)
 VALUES
 (542,106,1,3,NULL,9,
-'get i/o IN status','get status',NULL,1,1);
+'set i/o IN status','set status',NULL,1,1);
 
 INSERT INTO ssn_dict
 (`id_dict`,`dict_parent`,`dict_item_type`,`dict_value_int`,`dict_value_int2`,`dict_value_int3`,
@@ -543,6 +543,21 @@ INSERT INTO ssn_dict
 VALUES
 (10003,10002,1,1,1,NULL,
 '2001 device type','2001 dev type',NULL,0,1);
+
+-- d(2100):
+INSERT INTO ssn_dict
+(`id_dict`,`dict_parent`,`dict_item_type`,`dict_value_int`,`dict_value_int2`,`dict_value_int3`,
+`dict_item_comment`,`dict_value_string`,`dict_value_float`,`dict_is_common`,`dict_is_active`)
+VALUES
+(10004,10001,1,2100,0,0,
+'LED','LED',1,0,1);
+-- account - device type (dict_value_int = device type, dict_value_int2 = value type)
+INSERT INTO ssn_dict
+(`id_dict`,`dict_parent`,`dict_item_type`,`dict_value_int`,`dict_value_int2`,`dict_value_int3`,
+`dict_item_comment`,`dict_value_string`,`dict_value_float`,`dict_is_common`,`dict_is_active`)
+VALUES
+(10005,10004,1,4,3,NULL,
+'2100 device type','2100 dev type',NULL,0,1);
 
 -- account - objects list (dict_value_int = 1)
 INSERT INTO ssn_dict
